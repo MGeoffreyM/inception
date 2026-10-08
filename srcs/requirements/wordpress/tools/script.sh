@@ -4,14 +4,13 @@ cd /var/www/html
 
 # Si wp-config.php n'existe pas, cela veut dire que c'est le premier lancement
 if [ ! -f wp-config.php ]; then
-    echo "Configuration de WordPress en cours..."
+    echo "Attente de l'initialisation complète de MariaDB..."
+    sleep 10
     
-    echo "En attente que MariaDB soit prêt..."
     while ! mariadb -h mariadb -u ${SQL_USER} -p${SQL_PASSWORD} -e "SELECT 1;" >/dev/null 2>&1; do
         sleep 1
     done
-    echo "MariaDB est connecté et prêt !"
-
+    
     # 1. Création du fichier wp-config.php avec les identifiants de la base de données
     wp config create --allow-root \
         --dbname=${SQL_DATABASE} \

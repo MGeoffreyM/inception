@@ -2,6 +2,13 @@
 
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
+
+chown -R mysql:mysql /var/lib/mysql
+
+if [ ! -d "/var/lib/mysql/mysql" ]; then
+    echo "Installation des tables système de MariaDB..."
+    mariadb-install-db --user=mysql --datadir=/var/lib/mysql > /dev/null
+fi
 # On vérifie si la base de données existe déjà. 
 # Si elle existe, on ne refait pas la configuration initiale.
 if [ ! -d "/var/lib/mysql/${SQL_DATABASE}" ]; then
