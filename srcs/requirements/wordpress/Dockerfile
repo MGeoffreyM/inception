@@ -1,6 +1,7 @@
-FROM debian:trixie-slim
+FROM debian:bookworm-slim
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y wget php-fpm php-mysql mariadb-client tar ca-certificates \
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y wget php-fpm php-mysql php-redis mariadb-client tar ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
@@ -9,9 +10,9 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN mkdir -p /var/www/html
 
-RUN wget https://fr.wordpress.org/wordpress-7.1.2-fr_FR.tar.gz -P /tmp && \
-    tar -xzf /tmp/wordpress-7.1.2-fr_FR.tar.gz -C /var/www/html --strip-components=1 && \
-    rm /tmp/wordpress-7.1.2-fr_FR.tar.gz
+RUN wget https://fr.wordpress.org/wordpress-7.1.3-fr_FR.tar.gz -P /tmp && \
+    tar -xzf /tmp/wordpress-7.1.3-fr_FR.tar.gz -C /var/www/html --strip-components=1 && \
+    rm /tmp/wordpress-7.1.3-fr_FR.tar.gz
 
 RUN chown -R www-data:www-data /var/www/html
 RUN mkdir -p /run/php

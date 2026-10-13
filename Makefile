@@ -6,6 +6,7 @@ all: up
 up:
 	@mkdir -p $(DATA_PATH)/mariadb
 	@mkdir -p $(DATA_PATH)/html
+	@mkdir -p $(DATA_PATH)/uptime_kuma
 	docker compose -f srcs/docker-compose.yml up -d --build
 
 down:

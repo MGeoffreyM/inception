@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon CV</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            background: #f4f4f9; 
+        }
+        h1 { color: #333; }
+        
+        /* Conteneur pour centrer les deux images côte à côte */
+        .images-container {
+            display: flex;
+            justify-content: center; /* Centre horizontalement */
+            gap: 40px; /* Espace entre les deux images */
+            margin-top: 40px; /* Espace au-dessus des images */
+        }
+        
+        /* Style pour rendre les images rondes */
+        .images-container img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover; /* Empêche l'image d'être écrasée si elle n'est pas carrée */
+            border-radius: 50%; /* Rend l'image parfaitement ronde */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Ajoute une petite ombre esthétique */
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur mon CV</h1>
+    <p>Je suis un développeur Docker en devenir.
+        Apparement...
+    </p>
+    
+    <!-- Zone des images -->
+    <div class="images-container">
+        <!-- Assurez-vous que les noms correspondent exactement à vos fichiers -->
+        <img src="image1.jpg" alt="Première image">
+        <img src="image2.jpg" alt="Deuxième image">
+    </div>
+</body>
+</html>

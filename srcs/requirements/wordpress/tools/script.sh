@@ -4,9 +4,7 @@ cd /var/www/html
 
 # Si wp-config.php n'existe pas, cela veut dire que c'est le premier lancement
 if [ ! -f wp-config.php ]; then
-    echo "Attente de l'initialisation complète de MariaDB..."
-    sleep 10
-    
+   
     while ! mariadb -h mariadb -u ${SQL_USER} -p${SQL_PASSWORD} -e "SELECT 1;" >/dev/null 2>&1; do
         sleep 1
     done
@@ -16,7 +14,8 @@ if [ ! -f wp-config.php ]; then
         --dbname=${SQL_DATABASE} \
         --dbuser=${SQL_USER} \
         --dbpass=${SQL_PASSWORD} \
-        --dbhost=mariadb:3306 # 'mariadb' correspondra au nom du conteneur sur le réseau Docker
+        --dbhost=mariadb \
+        --skip-check
 
     # 2. Installation de base de WordPress (Création de l'administrateur)
     # RAPPEL DU SUJET : Le nom de cet admin ne doit pas contenir "admin" ou "administrator"
@@ -27,9 +26,17 @@ if [ ! -f wp-config.php ]; then
         --admin_password=${WP_ADMIN_PASSWORD} \
         --admin_email=${WP_ADMIN_EMAIL}
 
+    wp config set WP_REDIS_HOST redis --allow-root
+
+    wp config set WP_REDIS_PORT 6379 --raw --allow-root
+
     # 3. Création du deuxième utilisateur exigé par le sujet
     wp user create --allow-root ${WP_USER} ${WP_USER_EMAIL} --user_pass=${WP_USER_PASSWORD} --role=author
     
+    wp plugin install redis-cache --activate --allow-root
+
+    wp redis enable --allow-root
+
     # Fixer les permissions une dernière fois (au cas où WP-CLI a créé des fichiers en root)
     chown -R www-data:www-data /var/www/html
 else

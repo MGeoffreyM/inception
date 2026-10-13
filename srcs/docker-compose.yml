@@ -22,6 +22,7 @@ services:
     restart: always
     depends_on:
       - mariadb
+      - redis
     env_file:
       - .env
     networks:
@@ -45,6 +46,65 @@ services:
     volumes:
       - wordpress_data:/var/www/html
 
+  redis:
+    image: redis_perso
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    container_name: redis
+    restart: always
+    networks:
+      - inception
+
+  ftp:
+    image: ftp_server
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+    container_name: ftp
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    networks:
+      - inception
+    volumes:
+      - wordpress_data:/var/www/html
+
+  static_site:
+    image: static_cv
+    build:
+      context: ./requirements/bonus/static_site
+      dockerfile: Dockerfile
+    container_name: static_site
+    restart: always
+    networks:
+      - inception
+
+  adminer:
+    image: adminer_perso
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    container_name: adminer
+    restart: always
+    networks:
+      - inception
+
+  uptime_kuma:
+    image: uptime_kuma_perso
+    build:
+      context: ./requirements/bonus/uptime_kuma
+      dockerfile: Dockerfile
+    container_name: uptime_kuma
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - uptime_kuma_data:/var/www/data
+
 networks:
   inception:
     driver: bridge
@@ -62,3 +122,9 @@ volumes:
       type: none
       o: bind
       device: /home/gematura/data/html
+  uptime_kuma_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/gematura/data/uptime_kuma
