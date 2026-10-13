@@ -4,7 +4,28 @@ cd /var/www/html
 
 # Si wp-config.php n'existe pas, cela veut dire que c'est le premier lancement
 if [ ! -f wp-config.php ]; then
-   
+
+    if [ ! -f "/run/secrets/db_password" ]; then
+    echo "Erreur : Le fichier secret db_password est introuvable."
+    exit 1
+    fi
+
+    SQL_PASSWORD=$(cat /run/secrets/db_password)
+
+    if [ ! -f "/run/secrets/root_wp_password" ]; then
+        echo "Erreur : Le fichier secret root_db_password est introuvable."
+        exit 1
+    fi
+
+    WP_ADMIN_PASSWORD=$(cat /run/secrets/root_wp_password)
+
+    if [ ! -f "/run/secrets/wp_password" ]; then
+        echo "Erreur : Le fichier secret root_db_password est introuvable."
+        exit 1
+    fi
+
+    WP_USER_PASSWORD=$(cat /run/secrets/wp_password)
+
     while ! mariadb -h mariadb -u ${SQL_USER} -p${SQL_PASSWORD} -e "SELECT 1;" >/dev/null 2>&1; do
         sleep 1
     done

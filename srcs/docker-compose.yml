@@ -12,6 +12,9 @@ services:
       - inception
     volumes:
       - mariadb_data:/var/lib/mysql
+    secrets:
+      - db_password
+      - root_db_password
 
   wordpress:
     image: wordpress
@@ -29,6 +32,10 @@ services:
       - inception
     volumes:
       - wordpress_data:/var/www/html
+    secrets:
+      - db_password
+      - root_wp_password
+      - wp_password
 
   nginx:
     image: nginx
@@ -72,6 +79,8 @@ services:
       - inception
     volumes:
       - wordpress_data:/var/www/html
+    secrets:
+      - ftp_password
 
   static_site:
     image: static_cv
@@ -128,3 +137,15 @@ volumes:
       type: none
       o: bind
       device: /home/gematura/data/uptime_kuma
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+  ftp_password:
+    file: ../secrets/ftp_password.txt
+  root_db_password:
+    file: ../secrets/root_db_password.txt
+  root_wp_password:
+    file: ../secrets/root_wp_password.txt
+  wp_password:
+    file: ../secrets/wp_password.txt

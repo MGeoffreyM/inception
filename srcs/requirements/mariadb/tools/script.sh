@@ -14,6 +14,20 @@ fi
 if [ ! -d "/var/lib/mysql/${SQL_DATABASE}" ]; then
 
     echo "Initialisation de la base de données..."
+    if [ ! -f "/run/secrets/db_password" ]; then
+        echo "Erreur : Le fichier secret db_password est introuvable."
+        exit 1
+    fi
+
+    SQL_PASSWORD=$(cat /run/secrets/db_password)
+
+    if [ ! -f "/run/secrets/root_db_password" ]; then
+        echo "Erreur : Le fichier secret root_db_password est introuvable."
+        exit 1
+    fi
+
+    SQL_ROOT_PASSWORD=$(cat /run/secrets/root_db_password)
+
     service mariadb start
     
     # On attend que MariaDB est bien lancé
