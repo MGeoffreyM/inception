@@ -15,7 +15,8 @@ down:
 clean: down
 	docker compose -f srcs/docker-compose.yml down --rmi all --volumes
 	@sudo rm -rf $(DATA_PATH)/mariadb/*
-	@sudo rm -rf $(DATA_PATH)/wordpress/*
+	@sudo rm -rf $(DATA_PATH)/html/*
+	@sudo rm -rf $(DATA_PATH)/uptime_kuma/*
 
 fclean: clean
 	docker system prune -a --volumes -f
