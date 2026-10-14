@@ -1,4 +1,6 @@
-# Documentation Développeur — Inception (Version Française)
+# Documentation Développeur — Inception
+
+**🌐 [English Version](../DEV_DOC.md)**
 
 Ce document décrit comment un développeur peut configurer l'environnement **Inception** depuis zéro, compiler et lancer le projet, gérer les conteneurs et comprendre la persistance des données.
 

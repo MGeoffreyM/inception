@@ -1,5 +1,7 @@
 *This project has been created as part of the 42 curriculum by gematura.*
 
+**🇫🇷 [Version Française](doc/README_FR.md)**
+
 # Inception
 
 ## Description

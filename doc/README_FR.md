@@ -1,8 +1,8 @@
 *Ce projet a été créé dans le cadre du cursus 42 par gematura.*
 
-# Inception (Version Française)
+**🌐 [English Version](../README.md)**
 
-> **Note** : Ce fichier est la traduction française pour ta relecture personnelle. Le sujet exige que le fichier `README.md` officiel soit en anglais.
+# Inception
 
 ## Description
 

@@ -1,5 +1,7 @@
 # Developer Documentation — Inception
 
+**🇫🇷 [Version Française](doc/DEV_DOC_FR.md)**
+
 This document provides technical instructions for developers to set up the **Inception** environment from scratch, understand its architecture, build and debug containers, and manage persistent storage.
 
 ---

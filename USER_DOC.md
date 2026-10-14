@@ -1,5 +1,7 @@
 # User Documentation — Inception
 
+**🇫🇷 [Version Française](doc/USER_DOC_FR.md)**
+
 This guide explains what services are provided by the **Inception** infrastructure and how an end user or system administrator can operate, access, and monitor the platform.
 
 ---

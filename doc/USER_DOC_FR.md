@@ -1,4 +1,6 @@
-# Documentation Utilisateur — Inception (Version Française)
+# Documentation Utilisateur — Inception
+
+**🌐 [English Version](../USER_DOC.md)**
 
 Ce guide explique quels services sont fournis par l'infrastructure **Inception** et comment un utilisateur final ou un administrateur peut démarrer, utiliser et superviser la plateforme.
 
