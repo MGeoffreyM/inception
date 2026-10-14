@@ -54,7 +54,7 @@ services:
       - wordpress_data:/var/www/html
 
   redis:
-    image: redis_perso
+    image: redis
     build:
       context: ./requirements/bonus/redis
       dockerfile: Dockerfile
@@ -64,7 +64,7 @@ services:
       - inception
 
   ftp:
-    image: ftp_server
+    image: ftp
     build:
       context: ./requirements/bonus/ftp
       dockerfile: Dockerfile
@@ -83,7 +83,7 @@ services:
       - ftp_password
 
   static_site:
-    image: static_cv
+    image: static_site
     build:
       context: ./requirements/bonus/static_site
       dockerfile: Dockerfile
@@ -93,7 +93,7 @@ services:
       - inception
 
   adminer:
-    image: adminer_perso
+    image: adminer
     build:
       context: ./requirements/bonus/adminer
       dockerfile: Dockerfile
@@ -103,7 +103,7 @@ services:
       - inception
 
   uptime_kuma:
-    image: uptime_kuma_perso
+    image: uptime_kuma
     build:
       context: ./requirements/bonus/uptime_kuma
       dockerfile: Dockerfile
